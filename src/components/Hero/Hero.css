@@ -1,0 +1,84 @@
+/* src/components/Hero/Hero.css */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  overflow: hidden;
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.title-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.title-line:nth-child(1) { animation-delay: 0.1s; }
+.title-line:nth-child(2) { animation-delay: 0.3s; }
+.title-line:nth-child(3) { animation-delay: 0.5s; }
+
+.hero-description {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.7s forwards;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cta-button {
+  padding: 1rem 2rem;
+  background: transparent;
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.9s forwards;
+}
+
+.cta-button:hover {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ff4d5a, #6a11cb);
+  opacity: 0.8;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
