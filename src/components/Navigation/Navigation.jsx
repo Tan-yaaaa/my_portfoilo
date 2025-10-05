@@ -1,32 +1,17 @@
-// src/components/Navigation/Navigation.jsx
-import React from 'react'
+// components/Navigation/Navigation.jsx
 import './Navigation.css'
 
-const Navigation = ({ activeSection }) => {
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    element?.scrollIntoView({ behavior: 'smooth' })
-  }
-
+const Navigation = () => {
   return (
     <nav className="navigation">
-      <div className="nav-container">
-        <div className="nav-logo">
-          <span>Your Name</span>
-        </div>
-        <ul className="nav-links">
-          {['home', 'projects', 'about', 'contact'].map(section => (
-            <li key={section}>
-              <button
-                className={`nav-link ${activeSection === section ? 'active' : ''}`}
-                onClick={() => scrollToSection(section)}
-              >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-              </button>
-            </li>
-          ))}
-        </ul>
+      <div className="nav-brand">
+        <span className="gradient-text">Portfolio</span>
       </div>
+      <ul className="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
   )
 }

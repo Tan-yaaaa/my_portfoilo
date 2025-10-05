@@ -1,0 +1,201 @@
+.header {
+  background: #ffffff;
+  color: #000000;
+  padding: 80px 0 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.headerContent {
+  position: relative;
+  z-index: 1;
+}
+
+.updateDate {
+  font-size: 1rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+  opacity: 0.7;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.name {
+  font-size: 4rem;
+  font-weight: 300;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.letter {
+  display: inline-block;
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center bottom;
+  position: relative;
+}
+
+/* Scroll out animation - letters go up and stretch */
+.letter.scrolledOut {
+  transform: translateY(-100px) scaleY(2) rotateX(90deg);
+  opacity: 0;
+  transition-delay: calc(var(--i) * 0.05s);
+}
+
+/* Scroll in animation - letters come back from above */
+.letter.scrolledIn {
+  transform: translateY(0) scaleY(1) rotateX(0deg);
+  opacity: 1;
+  transition-delay: calc(var(--i) * 0.03s);
+}
+
+/* Tagline Styles */
+.tagline {
+  margin-top: 10px;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1px;
+}
+
+.taglineLetter {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #666;
+  font-family: cursives ;
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center bottom;
+}
+
+/* Tagline scroll animations */
+.taglineLetter.scrolledOut {
+  transform: translateY(-60px) scaleY(1.8) rotateX(90deg);
+  opacity: 0;
+  transition-delay: calc(var(--i) * 0.03s);
+}
+
+.taglineLetter.scrolledIn {
+  transform: translateY(0) scaleY(1) rotateX(0deg);
+  opacity: 1;
+  transition-delay: calc(var(--i) * 0.02s);
+}
+
+
+/* Action Buttons */
+.actionButtons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.actionBtn {
+  background: transparent;
+  border: 1px solid #e8e8e8;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #666;
+}
+
+.actionBtn:hover {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: 60px 0 40px;
+  }
+  
+  .name {
+    font-size: 2.8rem;
+    min-height: 100px;
+  }
+  
+  .taglineLetter {
+    font-size: 1.1rem;
+  }
+  
+  .updateDate {
+    font-size: 0.9rem;
+  }
+
+  .actionButtons {
+    top: 15px;
+    right: 15px;
+  }
+
+  .actionBtn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .tagline::before,
+  .tagline::after {
+    margin: 0 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 50px 0 30px;
+  }
+  
+  .name {
+    font-size: 2.2rem;
+    min-height: 80px;
+    flex-wrap: wrap;
+  }
+  
+  .taglineLetter {
+    font-size: 0.9rem;
+  }
+  
+  .updateDate {
+    font-size: 0.8rem;
+  }
+
+  .letter.scrolledOut {
+    transform: translateY(-60px) scaleY(1.8) rotateX(90deg);
+  }
+
+  .taglineLetter.scrolledOut {
+    transform: translateY(-40px) scaleY(1.5) rotateX(90deg);
+  }
+
+  .tagline::before,
+  .tagline::after {
+    margin: 0 5px;
+    font-size: 0.8rem;
+  }
+}
