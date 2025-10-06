@@ -73,7 +73,7 @@ function Header() {
   }
 
   const renderAnimatedTagline = () => {
-    const tagline = "Crafting Digital Dreams into Reality"
+    const tagline = "Crafting Digital Reality"
     return tagline.split('').map((letter, index) => (
       <span 
         key={index}
