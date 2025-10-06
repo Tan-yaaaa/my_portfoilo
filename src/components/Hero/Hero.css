@@ -156,8 +156,32 @@
   box-shadow: 0 12px 30px rgba(167, 139, 250, 0.4);
 }
 
-.btn-icon {
-  font-size: 0.9rem;
+/* Update button states for View Resume */
+.btn.opening {
+  position: relative;
+  opacity: 0.8;
+}
+
+.btn.opening::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 8px;
+}
+
+.btn.opened {
+  background-color: #10b981;
+  border-color: #10b981;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Code Window Styles */

@@ -55,6 +55,9 @@ const Hero = () => {
     }
   }, [currentLine, charIndex, codeLines])
 
+  // Correct Google Drive direct download URL
+  const resumeUrl = 'https://drive.google.com/uc?export=download&id=1QTeho_uW8-qEIlikVqgK4gv2rw2Oj_AM'
+
   return (
     <section id="home" className="hero">
       <div className="container">
@@ -79,10 +82,10 @@ const Hero = () => {
                 View Projects
               </a>
               
-              {/* Method 1: Simple Anchor Tag */}
+              {/* Anchor tag for download */}
               <a 
-                href="public/Tanya_Resume.pdf"
-                download="Tanya_Resume.pdf"
+                href={resumeUrl}
+                download="Tanya_Singh_Resume.pdf"
                 className="btn btn-secondary"
                 target="_blank"
                 rel="noopener noreferrer"
