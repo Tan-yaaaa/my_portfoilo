@@ -59,7 +59,7 @@ const Hero = () => {
   // Function to handle resume download with correct base URL
   const handleDownloadResume = () => {
     // Use the correct path with base URL
-    const resumeUrl = 'C:\Users\Tanya\my-portfolio\public\Tanya_ RESUME.pdf'
+    const resumeUrl = ''
     
     // Test if file exists first
     fetch(resumeUrl)
@@ -74,7 +74,7 @@ const Hero = () => {
           document.body.removeChild(link)
         } else {
           // File doesn't exist
-          alert(`Resume file not found at: ${resumeUrl}\n\nPlease make sure Tanya_Singh_Resume.pdf is in the public folder.`)
+          alert(`Resume file not found at: ${resumeUrl}\n\nPlease make sure Tanya_Resume.pdf is in the public folder.`)
         }
       })
       .catch(error => {
