@@ -59,7 +59,7 @@ const Hero = () => {
   // Function to handle resume download with correct base URL
   const handleDownloadResume = () => {
     // Use the correct path with base URL
-    const resumeUrl = '/my-portfolio/Tanya_Resume.pdf'
+    const resumeUrl = 'C:\Users\Tanya\my-portfolio\public\Tanya_ RESUME.pdf'
     
     // Test if file exists first
     fetch(resumeUrl)
