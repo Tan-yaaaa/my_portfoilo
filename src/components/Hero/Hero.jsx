@@ -46,7 +46,6 @@ const Hero = () => {
         return () => clearTimeout(timeout)
       }
     } else {
-      // Restart animation after completion
       const timeout = setTimeout(() => {
         setDisplayedText('')
         setCurrentLine(0)
@@ -55,33 +54,6 @@ const Hero = () => {
       return () => clearTimeout(timeout)
     }
   }, [currentLine, charIndex, codeLines])
-
-  // Function to handle resume download with correct base URL
-  const handleDownloadResume = () => {
-    // Use the correct path with base URL
-    const resumeUrl = ''
-    
-    // Test if file exists first
-    fetch(resumeUrl)
-      .then(response => {
-        if (response.ok) {
-          // File exists - download it
-          const link = document.createElement('a')
-          link.href = resumeUrl
-          link.download = 'Tanya_Resume.pdf'
-          document.body.appendChild(link)
-          link.click()
-          document.body.removeChild(link)
-        } else {
-          // File doesn't exist
-          alert(`Resume file not found at: ${resumeUrl}\n\nPlease make sure Tanya_Resume.pdf is in the public folder.`)
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error)
-        alert('Error accessing resume file. Please check the console.')
-      })
-  }
 
   return (
     <section id="home" className="hero">
@@ -107,18 +79,13 @@ const Hero = () => {
                 View Projects
               </a>
               
-              {/* Use anchor tag with correct base URL */}
+              {/* Method 1: Simple Anchor Tag */}
               <a 
-                href="/my-portfolio/Tanya_Singh_Resume.pdf" 
-                download="Tanya_Singh_Resume.pdf"
+                href="public/Tanya_Resume.pdf"
+                download="Tanya_Resume.pdf"
                 className="btn btn-secondary"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => {
-                  // Prevent default and use our handler for better error handling
-                  e.preventDefault()
-                  handleDownloadResume()
-                }}
               >
                 <FaDownload className="btn-icon" />
                 Download Resume
