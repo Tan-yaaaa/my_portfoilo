@@ -55,8 +55,12 @@ const Hero = () => {
     }
   }, [currentLine, charIndex, codeLines])
 
-  // Correct Google Drive direct download URL
-  const resumeUrl = 'https://drive.google.com/uc?export=download&id=1QTeho_uW8-qEIlikVqgK4gv2rw2Oj_AM'
+  // link to resume
+  <iframe 
+  src= "https://tan-yaaaa.github.io/my_portfoilo/"
+  width="100%" 
+  height="600">
+</iframe>
 
   return (
     <section id="home" className="hero">
