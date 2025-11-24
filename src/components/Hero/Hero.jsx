@@ -1,16 +1,23 @@
-import { useState, useEffect } from 'react'
-import { FaDownload, FaEye, FaCheck, FaTimes } from 'react-icons/fa'
-import './Hero.css'
-import { BsReverseListColumnsReverse } from 'react-icons/bs'
+import { useState, useEffect } from "react";
+import { FaDownload, FaEye, FaCheck, FaTimes } from "react-icons/fa";
+import "./Hero.css";
 
 const Hero = () => {
-  const [displayedText, setDisplayedText] = useState('')
-  const [currentLine, setCurrentLine] = useState(0)
-  const [charIndex, setCharIndex] = useState(0)
-  const [downloadProgress, setDownloadProgress] = useState(0)
-  const [isDownloading, setIsDownloading] = useState(false)
-  const [downloadComplete, setDownloadComplete] = useState(false)
-  const [downloadError, setDownloadError] = useState(false)
+  const [displayedText, setDisplayedText] = useState("");
+  const [currentLine, setCurrentLine] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+
+  const [downloadProgress, setDownloadProgress] = useState(0);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadComplete, setDownloadComplete] = useState(false);
+  const [downloadError, setDownloadError] = useState(false);
+
+  // ✅ Correct resume links
+  const resumeViewUrl =
+    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf";
+
+  const resumeDownloadUrl =
+    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf";
 
   const codeLines = [
     "// Software Developer",
@@ -29,107 +36,97 @@ const Hero = () => {
     "",
     "function create() {",
     "  return 'Building innovative solutions';",
-    "}"
-  ]
-
-  // ✅ Correct resume links
-  const resumeViewUrl =
-    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf";
-
-  const resumeDownloadUrl =
-    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf";
+    "}",
+  ];
 
   useEffect(() => {
     if (currentLine < codeLines.length) {
-      const currentText = codeLines[currentLine]
+      const currentText = codeLines[currentLine];
 
       if (charIndex < currentText.length) {
         const timeout = setTimeout(() => {
-          setDisplayedText(prev => prev + currentText[charIndex])
-          setCharIndex(prev => prev + 1)
-        }, 50)
-        return () => clearTimeout(timeout)
+          setDisplayedText((prev) => prev + currentText[charIndex]);
+          setCharIndex((prev) => prev + 1);
+        }, 50);
+        return () => clearTimeout(timeout);
       } else {
         const timeout = setTimeout(() => {
-          setDisplayedText(prev => prev + '\n')
-          setCurrentLine(prev => prev + 1)
-          setCharIndex(0)
-        }, 500)
-        return () => clearTimeout(timeout)
+          setDisplayedText((prev) => prev + "\n");
+          setCurrentLine((prev) => prev + 1);
+          setCharIndex(0);
+        }, 500);
+        return () => clearTimeout(timeout);
       }
     } else {
       const timeout = setTimeout(() => {
-        setDisplayedText('')
-        setCurrentLine(0)
-        setCharIndex(0)
-      }, 3000)
-      return () => clearTimeout(timeout)
+        setDisplayedText("");
+        setCurrentLine(0);
+        setCharIndex(0);
+      }, 3000);
+      return () => clearTimeout(timeout);
     }
-  }, [currentLine, charIndex, codeLines])
+  }, [currentLine, charIndex]);
 
-
-  // ⭐ Simulate download animation
+  // ✅ FIXED simulate download function
   const simulateDownloadProgress = () => {
-    setIsDownloading(true)
-    setDownloadComplete(false)
-    setDownloadError(false)
-    setDownloadProgress(0)
+    setIsDownloading(true);
+    setDownloadComplete(false);
+    setDownloadError(false);
+    setDownloadProgress(0);
 
     const interval = setInterval(() => {
-      setDownloadProgress(prev => {
+      setDownloadProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(interval)
-          return 100
+          clearInterval(interval);
+          return 100;
         }
 
         const increment =
-          prev < 70 ? Math.random() * 15 + 5 : Math.random() * 5 + 1
+          prev < 70 ? Math.random() * 15 + 5 : Math.random() * 5 + 1;
 
-        return Math.min(prev + increment, 100)
-      })
-    }, 200)
+        return Math.min(prev + increment, 100);
+      });
+    }, 200);
 
-    return interval
-  }
+    return interval;
+  };
 
-  // ⭐ Handle resume view + download
   const handleResumeAction = async () => {
-    // Open resume in new tab
-    window.open(resumeViewUrl, "_blank", "noopener,noreferrer")
+    window.open(resumeViewUrl, "_blank", "noopener,noreferrer");
 
-    const progressInterval = simulateDownloadProgress()
+    const progressInterval = simulateDownloadProgress();
 
     try {
-      const link = document.createElement("a")
-      link.href = resumeDownloadUrl
-      link.download = "Tanya_Singh_Resume.pdf"
-      link.target = "_blank"
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
+      const link = document.createElement("a");
+      link.href = resumeDownloadUrl;
+      link.download = "Tanya_Singh_Resume.pdf";
+      link.target = "_blank";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
       setTimeout(() => {
-        clearInterval(progressInterval)
-        setDownloadProgress(100)
-        setDownloadComplete(true)
-        setIsDownloading(false)
+        clearInterval(progressInterval);
+        setDownloadProgress(100);
+        setDownloadComplete(true);
+        setIsDownloading(false);
 
         setTimeout(() => {
-          setDownloadComplete(false)
-          setDownloadProgress(0)
-        }, 3000)
-      }, 2500)
+          setDownloadComplete(false);
+          setDownloadProgress(0);
+        }, 3000);
+      }, 2500);
     } catch (error) {
-      clearInterval(progressInterval)
-      setDownloadError(true)
-      setIsDownloading(false)
+      clearInterval(progressInterval);
+      setDownloadError(true);
+      setIsDownloading(false);
 
       setTimeout(() => {
-        setDownloadError(false)
-        setDownloadProgress(0)
-      }, 3000)
+        setDownloadError(false);
+        setDownloadProgress(0);
+      }, 3000);
     }
-  }
+  };
 
   const getButtonContent = () => {
     if (downloadComplete) {
@@ -138,7 +135,7 @@ const Hero = () => {
           <FaCheck className="btn-icon" />
           Download Complete!
         </>
-      )
+      );
     }
 
     if (downloadError) {
@@ -147,7 +144,7 @@ const Hero = () => {
           <FaTimes className="btn-icon" />
           Download Failed - Try Again
         </>
-      )
+      );
     }
 
     if (isDownloading) {
@@ -156,7 +153,7 @@ const Hero = () => {
           <div className="download-spinner"></div>
           Downloading... {Math.round(downloadProgress)}%
         </>
-      )
+      );
     }
 
     return (
@@ -164,8 +161,8 @@ const Hero = () => {
         <FaDownload className="btn-icon" />
         Download Resume
       </>
-    )
-  }
+    );
+  };
 
   return (
     <section id="home" className="hero">
@@ -181,8 +178,8 @@ const Hero = () => {
             </p>
 
             <p className="hero-description">
-              Transforming complex challenges into elegant, scalable solutions through 
-              modern technology and innovative development approaches.
+              Transforming complex challenges into elegant, scalable solutions
+              through modern technology and innovative development approaches.
             </p>
 
             <div className="hero-actions-left">
@@ -244,12 +241,12 @@ const Hero = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
+
 
