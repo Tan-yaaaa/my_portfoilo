@@ -61,9 +61,10 @@ const Hero = () => {
   target="_blank"
   rel="noopener noreferrer"
   className="btn"
->
-  View Resume
+ >
+ Download Resume
 </a>
+
 
 
   return (
