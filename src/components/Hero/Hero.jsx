@@ -56,9 +56,9 @@ const Hero = () => {
   }, [currentLine, charIndex, codeLines])
 
   // link to resume
-  <iframe 
-  src= "https://tan-yaaaa.github.io/my_portfoilo/"
-  width="100%" 
+  <iframe
+  src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf"
+  width="100%"
   height="600">
 </iframe>
 
