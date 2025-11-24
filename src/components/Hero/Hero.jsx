@@ -14,10 +14,10 @@ const Hero = () => {
 
   // ✅ Correct resume links
   const resumeViewUrl =
-    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf";
+    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/public/tanya%20resume%20(2).pdf";
 
   const resumeDownloadUrl =
-    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf";
+    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/public/tanya%20resume%20(2).pdf";
 
   const codeLines = [
     "// Software Developer",
