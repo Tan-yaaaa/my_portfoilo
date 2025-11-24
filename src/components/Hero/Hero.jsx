@@ -14,7 +14,7 @@ const Hero = () => {
 
   // ✅ Correct resume links
   //const resumeDownloadUrl = '/my_portfoilo/tanya resume.pdf'
-const resumeViewUrl = '/my_portfoilo/tanya resume.pdf'
+const resumeViewUrl = '/my_portfolio/tanya resume.pdf'
 
 
   const codeLines = [
