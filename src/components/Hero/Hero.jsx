@@ -13,8 +13,9 @@ const Hero = () => {
   const [downloadError, setDownloadError] = useState(false);
 
   // ✅ Correct resume links
-  const resumeViewUrl = "/tanya resume.pdf";
-const resumeDownloadUrl = "/tanya resume.pdf";
+  //const resumeDownloadUrl = '/my_portfoilo/tanya resume.pdf'
+const resumeViewUrl = '/my_portfoilo/tanya resume.pdf'
+
 
   const codeLines = [
     "// Software Developer",
