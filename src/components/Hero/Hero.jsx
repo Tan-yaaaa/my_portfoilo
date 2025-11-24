@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react'
-import { FaDownload, FaEye } from 'react-icons/fa'
+import { FaDownload, FaEye, FaCheck, FaTimes } from 'react-icons/fa'
 import './Hero.css'
+import { BsReverseListColumnsReverse } from 'react-icons/bs'
 
 const Hero = () => {
   const [displayedText, setDisplayedText] = useState('')
   const [currentLine, setCurrentLine] = useState(0)
   const [charIndex, setCharIndex] = useState(0)
+  const [downloadProgress, setDownloadProgress] = useState(0)
+  const [isDownloading, setIsDownloading] = useState(false)
+  const [downloadComplete, setDownloadComplete] = useState(false)
+  const [downloadError, setDownloadError] = useState(false)
 
   const codeLines = [
     "// Software Developer",
@@ -27,10 +32,17 @@ const Hero = () => {
     "}"
   ]
 
+  // ✅ Correct resume links
+  const resumeViewUrl =
+    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf";
+
+  const resumeDownloadUrl =
+    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf";
+
   useEffect(() => {
     if (currentLine < codeLines.length) {
       const currentText = codeLines[currentLine]
-      
+
       if (charIndex < currentText.length) {
         const timeout = setTimeout(() => {
           setDisplayedText(prev => prev + currentText[charIndex])
@@ -55,18 +67,105 @@ const Hero = () => {
     }
   }, [currentLine, charIndex, codeLines])
 
-  // link to resume
-  const resumeLink = (
-  <a 
-    href="https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf"
-    target ="_blank"
-    rel="noopener noreferrer"
-    className="btn"
-  >
-    Download Resume;
-  </a>
-);
 
+  // ⭐ Simulate download animation
+  const simulateDownloadProgress = () => {
+    setIsDownloading(true)
+    setDownloadComplete(false)
+    setDownloadError(false)
+    setDownloadProgress(0)
+
+    const interval = setInterval(() => {
+      setDownloadProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(interval)
+          return 100
+        }
+
+        const increment =
+          prev < 70 ? Math.random() * 15 + 5 : Math.random() * 5 + 1
+
+        return Math.min(prev + increment, 100)
+      })
+    }, 200)
+
+    return interval
+  }
+
+  // ⭐ Handle resume view + download
+  const handleResumeAction = async () => {
+    // Open resume in new tab
+    window.open(resumeViewUrl, "_blank", "noopener,noreferrer")
+
+    const progressInterval = simulateDownloadProgress()
+
+    try {
+      const link = document.createElement("a")
+      link.href = resumeDownloadUrl
+      link.download = "Tanya_Singh_Resume.pdf"
+      link.target = "_blank"
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+
+      setTimeout(() => {
+        clearInterval(progressInterval)
+        setDownloadProgress(100)
+        setDownloadComplete(true)
+        setIsDownloading(false)
+
+        setTimeout(() => {
+          setDownloadComplete(false)
+          setDownloadProgress(0)
+        }, 3000)
+      }, 2500)
+    } catch (error) {
+      clearInterval(progressInterval)
+      setDownloadError(true)
+      setIsDownloading(false)
+
+      setTimeout(() => {
+        setDownloadError(false)
+        setDownloadProgress(0)
+      }, 3000)
+    }
+  }
+
+  const getButtonContent = () => {
+    if (downloadComplete) {
+      return (
+        <>
+          <FaCheck className="btn-icon" />
+          Download Complete!
+        </>
+      )
+    }
+
+    if (downloadError) {
+      return (
+        <>
+          <FaTimes className="btn-icon" />
+          Download Failed - Try Again
+        </>
+      )
+    }
+
+    if (isDownloading) {
+      return (
+        <>
+          <div className="download-spinner"></div>
+          Downloading... {Math.round(downloadProgress)}%
+        </>
+      )
+    }
+
+    return (
+      <>
+        <FaDownload className="btn-icon" />
+        Download Resume
+      </>
+    )
+  }
 
   return (
     <section id="home" className="hero">
@@ -76,11 +175,11 @@ const Hero = () => {
             <h1 className="hero-title">
               Designing <span className="gradient-text">Digital Experiences</span>
             </h1>
-            
+
             <p className="hero-subtitle">
               Creative Developer & Technical Problem Solver
             </p>
-            
+
             <p className="hero-description">
               Transforming complex challenges into elegant, scalable solutions through 
               modern technology and innovative development approaches.
@@ -91,18 +190,27 @@ const Hero = () => {
                 <FaEye className="btn-icon" />
                 View Projects
               </a>
-              
-              {/* Anchor tag for download */}
-              <a 
-                href={resumeUrl}
-                download="Tanya_Singh_Resume.pdf"
-                className="btn btn-secondary"
-                target="_blank"
-                rel="noopener noreferrer"
+
+              <button
+                onClick={handleResumeAction}
+                className={`btn btn-secondary download-btn ${
+                  isDownloading ? "downloading" : ""
+                } ${downloadComplete ? "complete" : ""} ${
+                  downloadError ? "error" : ""
+                }`}
+                disabled={isDownloading}
               >
-                <FaDownload className="btn-icon" />
-                Download Resume
-              </a>
+                {getButtonContent()}
+              </button>
+
+              {(isDownloading || downloadComplete) && (
+                <div className="download-progress-container">
+                  <div
+                    className="download-progress-bar"
+                    style={{ width: `${downloadProgress}%` }}
+                  ></div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -121,7 +229,9 @@ const Hero = () => {
                 <div className="code-body">
                   <div className="line-numbers">
                     {Array.from({ length: 16 }, (_, i) => (
-                      <div key={i} className="line-number">{i + 1}</div>
+                      <div key={i} className="line-number">
+                        {i + 1}
+                      </div>
                     ))}
                   </div>
                   <pre className="code-content">
@@ -134,6 +244,7 @@ const Hero = () => {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -141,3 +252,4 @@ const Hero = () => {
 }
 
 export default Hero
+
