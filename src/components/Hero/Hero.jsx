@@ -56,11 +56,15 @@ const Hero = () => {
   }, [currentLine, charIndex, codeLines])
 
   // link to resume
-  <iframe
-  src="https://rawcdn.githack.com/Tan-yaaaa/my_portfoilo/5c97cfd6c2ad5507ebe54d5b7db8c68a5c4cd869/tanya%20resume.pdf"
-  width="100%"
-  height="600">
-</iframe>
+  <a 
+  href="https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn"
+>
+  View Resume
+</a>
+
 
   return (
     <section id="home" className="hero">
