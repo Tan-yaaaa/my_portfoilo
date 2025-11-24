@@ -56,15 +56,16 @@ const Hero = () => {
   }, [currentLine, charIndex, codeLines])
 
   // link to resume
+  const resumeLink = (
   <a 
-  href="https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="btn"
- >
- Download Resume
-</a>
-
+    href="https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/tanya%20resume.pdf"
+    target ="_blank"
+    rel="noopener noreferrer"
+    className="btn"
+  >
+    Download Resume;
+  </a>
+);
 
 
   return (
