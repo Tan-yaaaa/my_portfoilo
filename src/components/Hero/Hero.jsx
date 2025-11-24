@@ -13,11 +13,8 @@ const Hero = () => {
   const [downloadError, setDownloadError] = useState(false);
 
   // ✅ Correct resume links
-  const resumeViewUrl =
-    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/public/tanya%20resume%20(2).pdf";
-
-  const resumeDownloadUrl =
-    "https://raw.githack.com/Tan-yaaaa/my_portfoilo/main/public/tanya%20resume%20(2).pdf";
+  const resumeViewUrl = "/tanya resume.pdf";
+const resumeDownloadUrl = "/tanya resume.pdf";
 
   const codeLines = [
     "// Software Developer",
